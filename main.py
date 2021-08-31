@@ -1,13 +1,16 @@
 import csv
 from openpyxl import load_workbook
 
-workbook = load_workbook('Missing L1 FA.xlsx')
+missing_L1 = input('Missing L1')
+export_x=input('SC export')
+
+workbook = load_workbook(missing_L1)
 sheet = workbook.active
 rows = sheet.rows
 headers = [cell.value for cell in next(rows)]
 data = []
 exported = []
-with open('export.csv', 'r', encoding='utf-8', newline='') as export:
+with open(export_x, 'r', encoding='utf-8', newline='') as export:
     reader = csv.reader(export, delimiter=';')
     header = next(reader)
     index_of = header.index('Serial Number')
