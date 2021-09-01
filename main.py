@@ -1,8 +1,8 @@
 import csv
 from openpyxl import load_workbook
 
-missing_L1 = input('Missing L1')
-export_x=input('SC export')
+missing_L1 = "Missing L1 FA.xlsx"
+export_x="export.csv"
 
 workbook = load_workbook(missing_L1)
 sheet = workbook.active
@@ -11,9 +11,10 @@ headers = [cell.value for cell in next(rows)]
 data = []
 exported = []
 with open(export_x, 'r', encoding='utf-8', newline='') as export:
-    reader = csv.reader(export, delimiter=';')
+    reader = csv.reader(export)
     header = next(reader)
-    index_of = header.index('Serial Number')
+		# print("dsa")
+    index_of = header.index('Serial number')
     for line in reader:
         exported.append(line[index_of])
     for row in rows:
